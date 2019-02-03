@@ -13,4 +13,3 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\features\game.ahk
 #Include %A_ScriptDir%\features\streaming.ahk
 
-#Include %A_ScriptDir%\lib_ahk\restoreWindows.ahk

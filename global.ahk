@@ -2,6 +2,7 @@
 #Include lib_ahk/toolTip.ahk
 #Include %A_ScriptDir%\lib_ahk\utils.ahk
 
+; #Include %A_ScriptDir%\lib_ahk\winSave\hotkeys.ahk
 
 CoordMode, ToolTip, Screen
 
@@ -21,3 +22,6 @@ CoordMode, ToolTip, Screen
   ^End::Send #5
   ^PgDn::Send #6
 
+
+
+#z::Msgbox % GetWindows
