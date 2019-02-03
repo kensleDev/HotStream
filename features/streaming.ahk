@@ -4,7 +4,7 @@
 
 F14::SEMediaMenu("menu")
 
-F15::SceneSwitchingMenu("menu")
+; F15::SceneSwitchingMenu("menu")
 
 +`::openOverlay()
 
@@ -12,24 +12,6 @@ F15::SceneSwitchingMenu("menu")
 
 ; ---functions
 
-SceneSwitchingMenu(choice) {
-
-  if (choice="menu") {
-    menuResult := menuGen("Scenes", ["Main", "BRB", "Starting Soon", "Main2"])
-  } else {
-    menuResult := choice
-  }
-
-  ; if (menuResult=1) {
-  ;   ; obs("scene","main")
-  ; } else if (menuResult=2) {
-  ;   ; obs("scene", "brb")
-  ; } else if (menuResult=3) {
-  ;   ; obs("scene", "ss")
-  ; } else If (menuResult=4) {
-  ;   ; obs("scene", "main2")
-  ; }
-}
 
 SEMediaMenu(choice) {
   if (choice="menu") {

@@ -2,10 +2,13 @@
 #Include global.ahk
 #Include features/audio.ahk
 
+
+
+
+
 ; hotkeys
 
   F13::GamingMenu("menu")
-
 
 ; menu
 
@@ -22,7 +25,8 @@
     } else if (menuResult=2) {
       view("streaming")
     } else if (menuResult=3) {
-      openRemotePlayStream()
+      moveWindows("streaming")
+      ;openRemotePlayStream()
 
       ; toggleSteamStreamElements()
     }
@@ -56,33 +60,27 @@
     ToolTip, Setting up %view% view
     BlockInput, Off
 
-    ; openSteamFriends(view)
+    openAndResizeApp("Steam", 1920, 0, 940, 1069, 656)
 
-    setupAudio(view)
+    ; ; setupAudio(view)
 
     openAndResizeApp("Discord", 2900, 0, 940, 607, 5)
-    WinMinimize, Discord
-
-    openAndResizeApp("Messenger", 2936, 0, 904, 613, 5)
 
     if (view="streaming") {
-      openChat()
-      openAndResizeApp("Messenger", 3303, 0, 537, 613, 5)
-      openAndResizeApp("OBS", 2974, 564, 876, 526, 5)
-    } else {
-      openAndResizeApp("Messenger", 2936, 0, 904, 613, 5)
+      ; openChat()
+      send, #1
+      send, #5
+      ; sleep 3000
     }
-    ; --
+
+    ; openSteamFriends(view)
 
 
-    ; openAndMoveSteamBookmark("img/steamSE.png", "StreamElements - Songrequest", 3461, 606, 379, 475)
-
-    ; openAndMoveSteamBookmark("img/steamGE.png", "Google", 2668, 606, 793, 477)
-
-    openSteamFriends(view)
+    moveWindows(view)
 
 
-    ; moveWindows(view)
+    ; WinActivate, ahk_exe Steam.exe
+
 
     BlockInput, On
     ToolTip
@@ -93,26 +91,7 @@
 
   moveWindows(view) {
 
-    if (view="gaming") {
-      WinMinimize, ahk_exe chrome.exe
 
-      WinMove, ahk_exe voicemeeterpro.exe, , 1920, 0, 1024, 620
-
-      WinMove, ahk_exe steamwebhelper.exe, , 1920, 616, 1064, 463
-
-      WinMove, PS4 Remote Play, , 2900, 616, 820, 465
-
-      WinMove, Messenger for Desktop, , 2980, 0, 869, 527
-
-      WinMove, ahk_exe obs64.exe, , 2974, 564, 876, 526
-
-      WinMinimize, ahk_exe Discord.exe
-
-      WinActivate, ahk_exe voicemeeterpro.exe
-
-      openSteamAndFriends(view)
-
-    }
 
     if (view="streaming") {
 
@@ -120,32 +99,48 @@
 
       WinMove, ahk_exe voicemeeterpro.exe, , 2287, 0, 1024, 620
 
-      ; WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 584
+      WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 538
 
-      WinMove, ahk_exe steamwebhelper.exe, , 2287, 616, 697, 463
-
-      WinMove, PS4 Remote Play, , 2900, 616, 820, 465
-
-
-
-       WinMove, Messenger for Desktop, , 2930, 0, 919, 626
-
-      ; WinMove, ahk_exe ApplicationFrameHost.exe, , 1913, 406, 697, 680
-
-      WinMove, ahk_exe obs64.exe, , 2974, 564, 876, 526
+      WinMove, ahk_exe Streamlabs OBS.exe, , 2900, 483, 942, 600
 
       WinMove, ahk_exe RestreamChat.exe, , 1920, 0, 367, 1080
 
+      ; WinMove, ahk_exe steamwebhelper.exe, , 2287, 616, 697, 463
+
+      ; WinMove, PS4 Remote Play, , 2900, 616, 820, 465
+
+
       ; --
 
-      WinMinimize, ahk_exe Discord.exe
+      WinMinimize, ahk_exe Steam.exe
 
-      WinActivate, ahk_exe voicemeeterpro.exe
+      WinActivate, ahk_exe Discord.exe
 
-      openSteamAndFriends(view)
+      ; openSteamAndFriends(view)
 
+      return
     }
 
+    ; if (view="gaming") {
+    ;   WinMinimize, ahk_exe chrome.exe
+
+    ;   WinMove, ahk_exe voicemeeterpro.exe, , 1920, 0, 1024, 620
+
+    ;   WinMove, ahk_exe steamwebhelper.exe, , 1920, 616, 1064, 463
+
+    ;   WinMove, PS4 Remote Play, , 2900, 616, 820, 465
+
+    ;   WinMove, Messenger for Desktop, , 2980, 0, 869, 527
+
+    ;   WinMove, ahk_exe obs64.exe, , 2974, 564, 876, 526
+
+    ;   WinMinimize, ahk_exe Discord.exe
+
+    ;   WinActivate, ahk_exe voicemeeterpro.exe
+
+    ;   openSteamAndFriends(view)
+
+    ; }
   }
 
 
@@ -387,7 +382,7 @@
         ; appLauncher("Chat", path("Restream Chat"))
         ; ahk_exe RestreamChat.exe
         ; ; open chat - HACK
-        Send #6
+        Send #5
 
         sleep 4000
 

@@ -54,9 +54,10 @@ CoordMode, ToolTip, Screen
 
       ToolTip % s
 
-      Input Key, L1
+      Input, Key, L1, {LControl}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}
+        ; MsgBox, %SingleKey%
         ToolTip,
-        If Key=F1
+        If Key=1
           return 1
         Else If Key=2
           return 2
@@ -88,66 +89,24 @@ CoordMode, ToolTip, Screen
 
     global mode=0
 
-    F12 & F12::Return ; The hotkey to use as modifier
-    *F12::Send {Blind}{F12} ; Send it explicitly when no other key is pressed before letting go, including any modifiers being held
+    SC029 & SC029::Return ; The hotkey to use as modifier
+    *SC029::Send {Blind}{SC029} ; Send it explicitly when no other key is pressed before letting go, including any modifiers being held
 
-    #If GetKeyState("F12", "p") ; Autohotkey_L directive for enabling following mappings when key is physically down
-      PrintScreen::
-        global mode=1
-        tooltiper(mode)
+    #If GetKeyState("SC029", "p") ; Autohotkey_L directive for enabling following mappings when key is physically down
+      1::
+        send, {F13}
       return
 
-      ScrollLock::
-        global mode=2
-        tooltiper(mode)
+      2::
+        send, {F14}
       return
 
-      Pause::
-        global mode=0
-        tooltiper(mode)
+      3::
+        send, {F15}
       return
     #If
 
-    #if (mode = 0)
-      PrintScreen::PrintScreen
-      ScrollLock::Send {ScrollLock}
-      Pause::Send {Pause}
 
-      Insert::Send {Insert}
-      Home::Send {Home}
-      PgUp::Send {PgUp}
-
-      Del::Send {Del}
-      End::Send {End}
-      PgDn::Send {PgDn}
-    #if
-
-    #if (mode = 1)
-      PrintScreen::Send, {F13}
-      ScrollLock::Send, {F14}
-      Pause::Send, {F15}
-
-      Insert::#1
-      Home::#2
-      PgUp::#3
-
-      Del::#4
-      End::#5
-      PgDn::#6
-    #if
-
-    ^Insert::Send #1
-    ^Home::Send #2
-    ^PgUp::Send #3
-    ^Del::Send #4
-    ^End::Send #5
-    ^PgDn::Send #6
-
-    tooltiper(mode) {
-      ToolTip % mode
-      sleep 500
-      ToolTip
-    }
 
 
   ;--|
@@ -211,6 +170,13 @@ CoordMode, ToolTip, Screen
 
     }
 
+    ^Insert::Send #1
+    ^Home::Send #2
+    ^PgUp::Send #3
+    ^Del::Send #4
+    ^End::Send #5
+    ^PgDn::Send #6
+
   ;--|
 
 
@@ -244,7 +210,8 @@ CoordMode, ToolTip, Screen
       } else if (app="Messenger") {
         uId := "Messenger for Desktop"
       } else {
-        MsgBox, "not in the bank yet"
+        ; MsgBox % app
+        uId := %app%
       }
 
       return uId
@@ -340,3 +307,67 @@ CoordMode, ToolTip, Screen
 
   ;   WinActivate ahk_id %winid%
   ; }
+
+
+
+  ;  ; Keypad launcher
+  ;   #SingleInstance Force
+
+  ;   global mode=0
+
+  ;   F12 & F12::Return ; The hotkey to use as modifier
+  ;   *F12::Send {Blind}{F12} ; Send it explicitly when no other key is pressed before letting go, including any modifiers being held
+
+  ;   #If GetKeyState("F12", "p") ; Autohotkey_L directive for enabling following mappings when key is physically down
+  ;     PrintScreen::
+  ;       global mode=1
+  ;       tooltiper(mode)
+  ;     return
+
+  ;     ScrollLock::
+  ;       global mode=2
+  ;       tooltiper(mode)
+  ;     return
+
+  ;     Pause::
+  ;       global mode=0
+  ;       tooltiper(mode)
+  ;     return
+  ;   #If
+
+  ;   #if (mode = 0)
+  ;     PrintScreen::PrintScreen
+  ;     ScrollLock::Send {ScrollLock}
+  ;     Pause::Send {Pause}
+
+  ;     Insert::Send {Insert}
+  ;     Home::Send {Home}
+  ;     PgUp::Send {PgUp}
+
+  ;     Del::Send {Del}
+  ;     End::Send {End}
+  ;     PgDn::Send {PgDn}
+  ;   #if
+
+  ;   #if (mode = 1)
+  ;     PrintScreen::Send, {F13}
+  ;     ScrollLock::Send, {F14}
+  ;     Pause::Send, {F15}
+
+  ;     Insert::#1
+  ;     Home::#2
+  ;     PgUp::#3
+
+  ;     Del::#4
+  ;     End::#5
+  ;     PgDn::#6
+  ;   #if
+
+  ;   tooltiper(mode) {
+  ;     ToolTip % mode
+  ;     sleep 500
+  ;     ToolTip
+  ;   }
+
+
+  ; ;--|
