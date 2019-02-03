@@ -11,7 +11,7 @@
   GamingMenu(choice) {
 
     if (choice="menu") {
-      menuResult := menuGen("Gaming", ["Gaming", "Streaming", "Streaming-Windows", "Gaming-Windows"])
+      menuResult := menuGen("Gaming", ["Gaming Mode", "Streaming Mode", "Gaming Windows", " Streaming Windows"])
     } else {
       menuResult := choice
     }
@@ -31,25 +31,6 @@
 
   }
 
-  SteamMenu(choice) {
-    if (choice="menu") {
-      menuResult := menuGen("Steam", ["Main", "Browser", "Friends", "SE", "Google"])
-    } else {
-      menuResult := choice
-    }
-
-    if (menuResult=1) {
-      openSteam()
-    } else if (menuResult=2) {
-      openSteamBrowser()
-    } else if (menuResult=3) {
-      openSteamFriends("gaming")
-    } else if (menuResult=4) {
-      openAndMoveSteamBookmark("img/steamSE.png", "StreamElements - Songrequest", 3461, 606, 379, 475)
-    } else if (menuResult=5) {
-      openAndMoveSteamBookmark("img/steamGE.png", "Google", 2668, 606, 793, 477)
-    }
-  }
 
  ; -----
 
@@ -356,8 +337,6 @@
       }
 
     ; ---
-
-
 
   ; --|
 

@@ -132,3 +132,91 @@
     ; }
 
   ; ;--|
+
+
+
+
+
+  ; ---
+
+  ; searchAndSelectAudioDevice(firstImage, secondImage) {
+  ;   ImageSearch, OutputVarX, OutputVarY, 0, 0, 1920, 1080, %firstImage%
+  ;     sleep 500
+  ;     OutputVarX += 600
+  ;     sleep 100
+  ;     Click, %OutputVarX%, %OutputVarY%
+
+  ;     sleep 100
+  ;     SendInput {wheeldown}
+  ;     sleep 100
+  ;     SendInput {wheeldown}
+  ;     sleep 100
+  ;     SendInput {wheeldown}
+  ;     sleep 100
+  ;     SendInput {wheeldown}
+
+  ;     ImageSearch, OutputVarX, OutputVarY, 0, 0, 1920, 1080, %secondImage%
+  ;     sleep 100
+  ;     Click, %OutputVarX%, %OutputVarY%
+
+  ;     sleep 1000
+  ; }
+
+
+  ; restartWindowsAudio() {
+
+  ;   openWindowsMixer()
+
+  ;   ;Reset Audio Button
+  ;   ImageSearch, OutputVarX, OutputVarY, 0, 0, 1920, 1080, img/resetAudio.png
+
+  ;   OutputVarX += 10
+  ;   OutputVarY += 10
+  ;   sleep 50
+  ;   Click, %OutputVarX%, %OutputVarY%
+
+  ;   sleep 1000
+
+  ; }
+
+
+
+  ; AudioMenu(choice) {
+  ;   if (choice="menu") {
+  ;     menuResult := menuGen("Audio", ["Setup Audio", "Windows Mixer", "Setup Vst"])
+  ;   } else {
+  ;     menuResult := choice
+  ;   }
+
+  ;   if (menuResult=1) {
+  ;     setupAudio("gaming")
+  ;   } else if (menuResult=2) {
+  ;     openWindowsMixer()
+  ;   } else if (menuResult=3) {
+  ;     ; setupVstHost()
+  ;     openVstHost()
+  ;   }
+
+  ; }
+
+
+
+  ; SteamMenu(choice) {
+  ;   if (choice="menu") {
+  ;     menuResult := menuGen("Steam", ["Main", "Browser", "Friends", "SE", "Google"])
+  ;   } else {
+  ;     menuResult := choice
+  ;   }
+
+  ;   if (menuResult=1) {
+  ;     openSteam()
+  ;   } else if (menuResult=2) {
+  ;     openSteamBrowser()
+  ;   } else if (menuResult=3) {
+  ;     openSteamFriends("gaming")
+  ;   } else if (menuResult=4) {
+  ;     openAndMoveSteamBookmark("img/steamSE.png", "StreamElements - Songrequest", 3461, 606, 379, 475)
+  ;   } else if (menuResult=5) {
+  ;     openAndMoveSteamBookmark("img/steamGE.png", "Google", 2668, 606, 793, 477)
+  ;   }
+  ; }
