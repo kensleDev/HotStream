@@ -24,7 +24,7 @@ CoordMode, ToolTip, Screen
 ; Global Hotkeys
 
   ^+r:: ; press control+r to reload
-    Msgbox, Do you really want to reload this script?
+    Msgbox, Do you really want to reload this script ya?
     ifMsgBox, Yes
       Reload
     return
@@ -81,33 +81,58 @@ CoordMode, ToolTip, Screen
 
     }
 
-  ;--|
+    ; ---- Menu modifier
+
+      ; #SingleInstance Force
+
+      SC029 & SC029::Return ; The hotkey to use as modifier
+      *SC029::Send {Blind}{SC029} ; Send it explicitly when no other key is pressed before letting go, including any modifiers being held
+
+      #If GetKeyState("SC029", "p") ; Autohotkey_L directive for enabling following mappings when key is physically down
+        1::
+          send, {F13}
+        return
+
+        2::
+          send, {F14}
+        return
+
+        3::
+          send, {F15}
+        return
+
+        4::
+          send, {F16}
+        return
+
+        5::
+          send, {F17}
+        return
+
+        q::
+          send, {F18}
+        return
+
+        w::
+          send, {F19}
+        return
+
+        e::
+          send, {F20}
+        return
+
+        r::
+          send, {F21}
+        return
+
+        t::
+          send, {F22}
+        return
 
 
-  ; Keypad launcher
-    #SingleInstance Force
+      #If
 
-    global mode=0
-
-    SC029 & SC029::Return ; The hotkey to use as modifier
-    *SC029::Send {Blind}{SC029} ; Send it explicitly when no other key is pressed before letting go, including any modifiers being held
-
-    #If GetKeyState("SC029", "p") ; Autohotkey_L directive for enabling following mappings when key is physically down
-      1::
-        send, {F13}
-      return
-
-      2::
-        send, {F14}
-      return
-
-      3::
-        send, {F15}
-      return
-    #If
-
-
-
+    ;--|
 
   ;--|
 

@@ -2,10 +2,6 @@
 #Include global.ahk
 #Include features/audio.ahk
 
-
-
-
-
 ; hotkeys
 
   F13::GamingMenu("menu")
@@ -15,7 +11,7 @@
   GamingMenu(choice) {
 
     if (choice="menu") {
-      menuResult := menuGen("Gaming", ["Gaming", "Streaming", "Remote Play"])
+      menuResult := menuGen("Gaming", ["Gaming", "Streaming", "Streaming-Windows", "Gaming-Windows"])
     } else {
       menuResult := choice
     }
@@ -26,6 +22,8 @@
       view("streaming")
     } else if (menuResult=3) {
       moveWindows("streaming")
+    } else if (menuResult=4) {
+      moveWindows("gaming")
       ;openRemotePlayStream()
 
       ; toggleSteamStreamElements()
@@ -60,27 +58,18 @@
     ToolTip, Setting up %view% view
     BlockInput, Off
 
-    openAndResizeApp("Steam", 1920, 0, 940, 1069, 656)
+    setupAudio(view)
 
-    ; ; setupAudio(view)
+    openAndResizeApp("Steam", 1920, 0, 940, 1069, 656)
 
     openAndResizeApp("Discord", 2900, 0, 940, 607, 5)
 
     if (view="streaming") {
-      ; openChat()
       send, #1
       send, #5
-      ; sleep 3000
     }
 
-    ; openSteamFriends(view)
-
-
     moveWindows(view)
-
-
-    ; WinActivate, ahk_exe Steam.exe
-
 
     BlockInput, On
     ToolTip
@@ -90,8 +79,6 @@
   ; --
 
   moveWindows(view) {
-
-
 
     if (view="streaming") {
 
@@ -109,7 +96,6 @@
 
       ; WinMove, PS4 Remote Play, , 2900, 616, 820, 465
 
-
       ; --
 
       WinMinimize, ahk_exe Steam.exe
@@ -121,26 +107,21 @@
       return
     }
 
-    ; if (view="gaming") {
-    ;   WinMinimize, ahk_exe chrome.exe
+    if (view="gaming") {
+      WinMinimize, ahk_exe chrome.exe
+      WinMove, ahk_exe voicemeeterpro.exe, , 1920, 0, 1024, 620
 
-    ;   WinMove, ahk_exe voicemeeterpro.exe, , 1920, 0, 1024, 620
+      WinMove, PS4 Remote Play, , 2900, 616, 820, 465
 
-    ;   WinMove, ahk_exe steamwebhelper.exe, , 1920, 616, 1064, 463
+      WinMove, ahk_exe obs64.exe, , 2974, 564, 876, 526
 
-    ;   WinMove, PS4 Remote Play, , 2900, 616, 820, 465
+      WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 538
 
-    ;   WinMove, Messenger for Desktop, , 2980, 0, 869, 527
+      WinActivate, ahk_exe voicemeeterpro.exe
 
-    ;   WinMove, ahk_exe obs64.exe, , 2974, 564, 876, 526
+      ; openSteamAndFriends(view)
 
-    ;   WinMinimize, ahk_exe Discord.exe
-
-    ;   WinActivate, ahk_exe voicemeeterpro.exe
-
-    ;   openSteamAndFriends(view)
-
-    ; }
+    }
   }
 
 
@@ -376,20 +357,7 @@
 
     ; ---
 
-    ; --- Streaming
 
-      openChat() {
-        ; appLauncher("Chat", path("Restream Chat"))
-        ; ahk_exe RestreamChat.exe
-        ; ; open chat - HACK
-        Send #5
-
-        sleep 4000
-
-        WinMove, ahk_exe RestreamChat.exe, , 1920, 0, 370, 1080
-      }
-
-    ; ---
 
   ; --|
 

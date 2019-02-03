@@ -9,6 +9,7 @@
 
 #Include global.ahk
 
+
 ; hotkeys
 
   +^PgUp::restartVoicemeeter()
