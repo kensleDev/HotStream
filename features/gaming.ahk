@@ -1,6 +1,7 @@
 
 #Include global.ahk
 #Include features/audio.ahk
+CoordMode Pixel
 
 ; hotkeys
 
@@ -21,9 +22,9 @@
     } else if (menuResult=2) {
       view("streaming")
     } else if (menuResult=3) {
-      moveWindows("streaming")
-    } else if (menuResult=4) {
       moveWindows("gaming")
+    } else if (menuResult=4) {
+      moveWindows("streaming")
       ;openRemotePlayStream()
 
       ; toggleSteamStreamElements()
@@ -44,6 +45,8 @@
     openAndResizeApp("Steam", 1920, 0, 940, 1069, 656)
 
     openAndResizeApp("Discord", 2900, 0, 940, 607, 5)
+
+    openGroundControlMedia()
 
     if (view="streaming") {
       send, #1
@@ -67,15 +70,13 @@
 
       WinMove, ahk_exe voicemeeterpro.exe, , 2287, 0, 1024, 620
 
-      WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 538
+      WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 527
 
-      WinMove, ahk_exe Streamlabs OBS.exe, , 2900, 483, 942, 600
+      WinMove, ahk_exe Streamlabs OBS.exe, , 2947, 480, 893, 600
 
       WinMove, ahk_exe RestreamChat.exe, , 1920, 0, 367, 1080
 
-      ; WinMove, ahk_exe steamwebhelper.exe, , 2287, 616, 697, 463
-
-      ; WinMove, PS4 Remote Play, , 2900, 616, 820, 465
+      WinMove, ahk_exe Ground Control.exe, , 2332, 605, 624, 482
 
       ; --
 
@@ -96,9 +97,12 @@
 
       WinMove, ahk_exe obs64.exe, , 2974, 564, 876, 526
 
-      WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 538
+      WinMove, ahk_exe Discord.exe, , 2900, 0, 940, 727
+
+      WinMove, ahk_exe Ground Control.exe, , 1910, 610, 1000, 482
 
       WinActivate, ahk_exe voicemeeterpro.exe
+
 
       ; openSteamAndFriends(view)
 

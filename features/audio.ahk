@@ -13,11 +13,11 @@
 ; hotkeys
 
   +^PgUp::restartVoicemeeter()
-
   +^PgDn::openWindowsMixer()
 
-; menu
+  ; +Enter::openAudioRouter()
 
+; menu
 
 
 ; feature
@@ -36,7 +36,7 @@
 
   }
 
-  ; ---
+  ; --- IL VST Host
 
   openVstHost() {
 
@@ -99,6 +99,98 @@
     Sleep, 100
     Click
     Click
+  }
+
+  ; --- Ground Control
+
+  openGroundControlMedia() {
+    ; send, #6
+
+    appLauncher("GroundControl", path("GroundControl"))
+
+    MODE := getGroundControlMode()
+
+    groundControlMediaMode(MODE)
+
+    WinMove, A, , 1910, 610, 1000, 482
+
+  }
+
+  getGroundControlMode() {
+
+
+    MODE=""
+
+    imgPath=img/gc/music.png
+    imgPath2=img/gc/menu.png
+
+    ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, %imgPath%
+    if (ErrorLevel = 2) {
+      Msgbox, Could not conduct the search for %imgPath%.
+    } else if (ErrorLevel = 1) {
+      ; Msgbox, %imgPath% could not be found on the screen.
+      ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, %imgPath2%
+      if (ErrorLevel = 2) {
+        Msgbox, Could not conduct the search for %imgPath2%.
+      } else if (ErrorLevel = 1) {
+        MODE=Main
+      } else {
+        MODE=Media
+      }
+    } else {
+      MODE=Main
+    }
+
+    return MODE
+  }
+
+  groundControlMediaMode(MODE) {
+    if (%MODE%=Main) {
+      ; MsgBox, tes
+      sleep, 400
+      imgPath=img/gc/music.png
+      ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, %imgPath%
+      if (ErrorLevel = 2) {
+        RES=Could not conduct the search for %imgPath%.
+      } else if (ErrorLevel = 1) {
+        RES=%imgPath% could not be found on the screen.
+      } else {
+        Click, %FoundX%, %FoundY%
+      }
+    }
+  }
+
+  ; --- Audio Router
+
+  openAudioRouter() {
+    ; appLauncher("AudioRouter", path("AudioRouter"))
+
+    ; sleep, 2000
+    ; X=""
+    ; Y=""
+
+    ; imgPath=img/ar/se.png
+    ; ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, %imgPath%
+    ; if (ErrorLevel = 2) {
+    ;   Msgbox, Could not conduct the search for %imgPath%.
+    ; } else if (ErrorLevel = 1) {
+    ;   Msgbox, Could not find %imgPath%.
+    ; } else {
+    ;   Msgbox, %FoundX% %FoundY%
+
+    ;   X=%FoundX%
+    ;   Y=%FoundY%
+    ;   ; MouseMove, %FoundX%, %FoundY%
+    ; }
+
+    ; MouseMove, %X%, %Y%
+
+    WinActivate, Audio Router
+
+    sleep 1000
+
+    MouseMove, 200, 100
+
   }
 
   ; --

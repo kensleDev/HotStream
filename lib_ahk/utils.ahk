@@ -32,6 +32,10 @@
         uId := "Discord"
       } else if (app="Messenger") {
         uId := "Messenger for Desktop"
+      } else if (app="AudioRouter") {
+        uId := "ahk_class Audio Router"
+      } else if (app="GroundControl") {
+        uId := "ahk_exe Ground Control.exe"
       } else {
         ; MsgBox % app
         uId := %app%
@@ -179,21 +183,27 @@
 
 ; --- Image Search
 
-  imgSearchAndClick(imgPath) {
+  imgSearch(imgPath) {
     CoordMode Pixel  ; Interprets the coordinates below as relative to the screen rather than the active window.
     ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, %imgPath%
     RES=""
     DUMMY=""
 
     if (ErrorLevel = 2) {
-      DUMMY=Could not conduct the search.
+      RES=Could not conduct the search.
     } else if (ErrorLevel = 1) {
-      DUMMY=%imgPath% could not be found on the screen.
+      RES=%imgPath% could not be found on the screen.
     } else {
+      RES=%FoundX%|%FoundY%
       ; MsgBox The icon was found at %FoundX%x%FoundY%.
       ; RES=%FoundX%|%FoundY%
-      Click, %FoundX%, %FoundY%
+      ; if (click) {
+      ;   Click, %FoundX%, %FoundY%
+      ; } else {
+      ;   MouseMove, %FoundX%, %FoundY%
+      ; }
     }
+    return res
   }
 
 ;--|

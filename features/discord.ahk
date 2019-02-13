@@ -7,8 +7,10 @@ F14::SEMediaMenu("menu")
 ; F15::SceneSwitchingMenu("menu")
 
 +`::openOverlay()
-
-
+^!+5::sendDicordInGameCommand("!play", true)
+^!+6::sendDicordInGameCommand("!pause", true)
+^!+7::sendDicordInGameCommand("!skip", true)
+^!+8::sendDicordInGameCommand("!back", true)
 
 ; ---functions
 
@@ -57,9 +59,9 @@ sendDicordInGameCommand(command, showMenu) {
 
   MouseGetPos, MouseX, MouseY
 
-  imgSearchAndClick("img/jcc.png")
+  imgSearch("img/jcc.png")
 
-  imgSearchAndClick("img/disChat.png")
+  imgSearch("img/disChat.png")
 
   sendraw, %command%
 
